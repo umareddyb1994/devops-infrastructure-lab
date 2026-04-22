@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "cluster" {
-  name     = "devsecops-eks"
+  name     = var.cluster_name
   role_arn = aws_iam_role.eks_role.arn
 
   vpc_config {
