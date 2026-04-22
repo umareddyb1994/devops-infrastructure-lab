@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devsecops-dev
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/your-repo/devsecops-platform
+    targetRevision: HEAD
+    path: kubernetes/overlays/dev
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
